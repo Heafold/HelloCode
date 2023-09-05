@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content
+    .ui.segment
+        form.ui.form(action="/register" method="POST")
+            .field
+                label Nom d'utilisateur
+                input(type="text" name="username" placeholder="Choisissez un nom d'utilisateur")
+            
+            .field
+                label Email
+                input(type="email" name="email" placeholder="Entrez votre email")
+            
+            .field
+                label Mot de passe
+                input(type="password" name="password" placeholder="Choisissez un mot de passe")
+            
+            .field
+                label Confirmer le mot de passe
+                input(type="password" name="passwordConfirm" placeholder="Confirmez votre mot de passe")
+            
+            button.ui.primary.button(type="submit") S'inscrire
+            
+            .ui.divider.horizontal Ou
+            p Vous avez déjà un compte ? 
+              a(href="/login") Se connecter
