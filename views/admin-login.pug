@@ -1,0 +1,9 @@
+extends layout.pug
+
+block content
+    .ui.segment
+        form.ui.form(action="/admin-login" method="POST")
+            .field
+                label Mot de passe
+                input(type="password" name="password" placeholder="Entrez le mot de passe admin")
+            button.ui.primary.button(type="submit") Se connecter
