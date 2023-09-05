@@ -98,8 +98,4 @@ router.post("/admin-login", (req, res) => {
   }
 });
 
-router.get("/admin", checkAdmin, (req, res) => {
-  res.render("admin");
-});
-
 module.exports = router;

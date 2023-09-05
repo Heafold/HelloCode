@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .ui.container
+    .ui.segment
+      h2.ui.header #{article.title}
+      p
+        .meta Catégorie : 
+        a(href=`/category/${article.category._id}`)= article.category.name
+      p #{article.content}

@@ -2,10 +2,7 @@ extends layout.pug
 
 block content
     h1.ui.header Bienvenue #{username} !
-    a.ui.button(href="/logout") Se déconnecter
-    a.ui.button(href="/admin-login") Admin
 
-    // Cartes des articles
     if articles.length
         .ui.divider
 
@@ -14,7 +11,8 @@ block content
                 .card
                     .content
                         .header= article.title
-                        .meta= article.category.name
+                        .meta
+                            a(href=`/category/${article.category._id}`)= article.category.name
                         .description= article.summary
                     .extra.content
                         a(href=`/articles/${article._id}`) Lire plus
@@ -31,4 +29,4 @@ block content
     else
         .ui.divider
         .ui.warning.message
-            h4 Il n'y a pas encore d'articles disponibles. 
+            h4 Il n'y a pas encore d'articles disponibles.

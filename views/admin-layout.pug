@@ -3,13 +3,14 @@ html
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title Votre titre
+    title Administration
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" defer)
   body
     .ui.container
       .ui.menu
         a.item(href='/') Accueil
-        a.item(href='/admin') Admin
-        a.item(href='/logout') Se déconnecter
+        a.item(href='/admin') Tableau de bord
+        a.item(href='/admin/add-category') Ajouter une catégorie
+        a.item(href='/admin/add-article') Ajouter un article
       block content

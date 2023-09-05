@@ -1,0 +1,18 @@
+extends admin-layout
+
+block content
+    .ui.segment
+        h2 Tableau de bord
+
+        if numberOfArticles == 0 && numberOfCategories == 0
+            p Il semble que vous n'ayez ni articles ni catégories pour le moment. Commencez par ajouter quelque chose!
+        else
+            if numberOfArticles == 0
+                p Vous n'avez pas encore d'articles.
+            else
+                p Nombre d'articles : #{numberOfArticles}
+
+            if numberOfCategories == 0
+                p Vous n'avez pas encore de catégories.
+            else
+                p Nombre de catégories : #{numberOfCategories}

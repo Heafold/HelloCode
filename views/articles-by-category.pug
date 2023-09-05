@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+    h1.ui.header Articles de la catégorie #{articles[0].category.name}
+
+    if articles.length
+        .ui.divider
+
+        .ui.stackable.cards
+            each article in articles
+                .card
+                    .content
+                        .header= article.title
+                        .meta= article.category.name
+                        .description= article.summary
+                    .extra.content
+                        a(href=`/articles/${article._id}`) Lire plus
+
+    else
+        .ui.divider
+        .ui.warning.message
+            h4 Il n'y a pas encore d'articles dans cette catégorie.

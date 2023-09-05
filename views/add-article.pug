@@ -1,0 +1,20 @@
+extends admin-layout
+
+block content
+    h2 Ajouter un nouvel article
+    form.ui.form(action="/admin/add-article" method="POST")
+        .field
+            label Titre
+            input(type="text" name="title" required)
+        .field
+            label Résumé
+            textarea(name="summary" required)
+        .field
+            label Contenu
+            textarea(name="content" required)
+        .field
+            label Catégorie
+            select(name='category')
+                each category in categories
+                    option(value=category._id) #{category.name}
+        button.ui.primary.button(type="submit") Ajouter

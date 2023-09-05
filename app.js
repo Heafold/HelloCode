@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin");
+const displayRoutes = require('./routes/display');
 require("dotenv").config();
 
 const app = express();
@@ -32,5 +34,9 @@ app.use(
 app.set("view engine", "pug");
 
 app.use("/", authRoutes);
+
+app.use('/', displayRoutes);
+
+app.use("/admin", adminRoutes);
 
 

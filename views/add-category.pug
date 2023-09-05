@@ -1,0 +1,9 @@
+extends admin-layout
+
+block content
+    h2 Ajouter une nouvelle catégorie
+    form.ui.form(action="/admin/add-category" method="POST")
+        .field
+            label Nom de la catégorie
+            input(type="text" name="name" required)
+        button.ui.primary.button(type="submit") Ajouter
