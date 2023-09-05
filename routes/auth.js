@@ -1,6 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const Category = require("../models/Category");
+const Article = require("../models/Article");
 
 const router = express.Router();
 
@@ -18,8 +20,29 @@ function checkAdmin(req, res, next) {
   res.redirect("/admin-login");
 }
 
-router.get("/", checkAuthenticated, (req, res) => {
-  res.render("index", { username: req.session.user.username });
+router.get("/", checkAuthenticated, async (req, res) => {
+  let page = parseInt(req.query.page) || 1;
+  let limit = 10;
+
+  try {
+    let articles = await Article.find()
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .populate("category");
+
+    let totalArticles = await Article.countDocuments();
+
+    res.render("index", {
+      username: req.session.user.username,
+      articles,
+      currentPage: page,
+      totalPages: Math.ceil(totalArticles / limit),
+    });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
 });
 
 router.get("/register", (req, res) => {
