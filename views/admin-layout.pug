@@ -6,11 +6,15 @@ html
     title Administration
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" defer)
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
   body
     .ui.container
       .ui.menu
         a.item(href='/') Accueil
         a.item(href='/admin') Tableau de bord
+        a.item(href='/admin//articles-list') Tout les articles
+        a.item(href='/admin//qcms-list') Tout les QCM
         a.item(href='/admin/add-category') Ajouter une catégorie
         a.item(href='/admin/add-article') Ajouter un article
+        a.item(href='/admin/add-qcm') Ajouter un QCM
       block content

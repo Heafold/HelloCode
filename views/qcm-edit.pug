@@ -1,0 +1,25 @@
+extends admin-layout
+
+block content
+  .ui.container
+    h2.ui.header Modifier le QCM
+    form.ui.form(method='post' action='/admin/qcms/' + qcm._id + '/edit')
+      .field
+        label Titre du QCM
+        input(type='text' name='title' value=qcm.title required)
+      each question, index in qcm.questions
+        .field
+          label Question
+          input(type='text' name=`questions[${index}][text]` value=question.content required)
+          .grouped.fields
+            label Réponses:
+            .field
+              input(type='radio' name=`questions[${index}][answer]` value='A' checked=(question.correctAnswer === question.options[0]))
+              input(type='text' name=`questions[${index}][choices][A]` value=question.options[0] required)
+            .field
+              input(type='radio' name=`questions[${index}][answer]` value='B' checked=(question.correctAnswer === question.options[1]))
+              input(type='text' name=`questions[${index}][choices][B]` value=question.options[1] required)
+            .field
+              input(type='radio' name=`questions[${index}][answer]` value='C' checked=(question.correctAnswer === question.options[2]))
+              input(type='text' name=`questions[${index}][choices][C]` value=question.options[2] required)
+      button.ui.button(type='submit') Mettre à jour

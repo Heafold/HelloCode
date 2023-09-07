@@ -1,0 +1,26 @@
+extends admin-layout
+
+block content
+  .ui.container
+    h2.ui.header Liste des articles
+    table.ui.celled.table
+      thead
+        tr
+          th Titre
+          th Catégorie
+          th Date de création
+          th Actions
+      tbody
+        each article in articles
+          tr
+            td #{article.title}
+            td #{article.category.name}
+            td #{article.createdAt.toDateString()}
+            td
+              a.ui.button(href=`/admin/articles/${article._id}/edit`) Modifier
+              a.ui.button.red(href=`/admin/articles/${article._id}/delete`) Supprimer
+
+    .ui.pagination.menu
+      - var totalPagesArray = [...Array(totalPages).keys()]
+      each page in totalPagesArray
+        a.item(class=(currentPage === (page+1) ? 'active' : ''), href=`/?page=${page+1}`) #{page+1}

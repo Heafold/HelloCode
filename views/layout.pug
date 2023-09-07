@@ -12,4 +12,9 @@ html
         a.item(href='/') Accueil
         a.item(href='/admin') Admin
         a.item(href='/logout') Se déconnecter
+        form.ui.form(action='/search' method='get')
+            .ui.icon.input
+                input(type='text' placeholder='Rechercher un article...' name='query' autocomplete='off')
+                i.search.icon
+
       block content

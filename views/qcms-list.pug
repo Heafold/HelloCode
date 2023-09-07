@@ -1,0 +1,22 @@
+extends admin-layout
+
+block content
+  .ui.container
+    h2.ui.header Liste des QCMs
+    table.ui.celled.table
+      thead
+        tr
+          th Titre
+          th Actions
+      tbody
+        each qcm in qcms
+          tr
+            td #{qcm.title}
+            td
+              a.ui.button(href=`/admin/qcms/${qcm._id}/edit`) Modifier
+              a.ui.button.red(href=`/admin/qcms/${qcm._id}/delete`) Supprimer
+
+    .ui.pagination.menu
+      - var totalPagesArray = [...Array(totalPages).keys()]
+      each page in totalPagesArray
+        a.item(class=(currentPage === (page+1) ? 'active' : ''), href=`/qcms?page=${page+1}`) #{page+1}

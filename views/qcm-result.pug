@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .ui.container
+    .ui.segment
+      if score === total
+        h2.ui.header.vertically.divided Bien joué !
+        p Vous avez correctement répondu aux questions.
+      else
+        h2.ui.header.vertically.divided Dommage...
+        p Vous n'avez pas répondu correctement aux questions.
+        .ui.divider
+        h4 Réponse(s) correcte(s) :
+        each question, index in article.qcm.questions
+          p= question.content + ": " + question.correctAnswer
+
+      a.ui.button(href=`/articles/${article._id}`) Retour à l'article
+

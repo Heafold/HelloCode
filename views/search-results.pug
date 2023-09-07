@@ -1,0 +1,32 @@
+extends layout.pug
+
+block content
+    h1.ui.header Résultats de recherche pour "#{query}"
+
+    if articles.length
+        .ui.divider
+
+        .ui.stackable.cards
+            each article in articles
+                .card
+                    .content
+                        .header= article.title
+                        .meta
+                            a(href=`/category/${article.category._id}`)= article.category.name
+                        .description= article.summary
+                    .extra.content
+                        a(href=`/articles/${article._id}`) Lire plus
+
+        // Pagination
+        .ui.divider
+        .ui.pagination.menu
+            if currentPage > 1
+                a.item(href=`/search?q=${query}&page=${currentPage - 1}`) Précédent
+            - for (let i = 1; i <= totalPages; i++)
+                a.item(class=(i === currentPage ? 'active' : ''), href=`/search?q=${query}&page=${i}`)= i
+            if currentPage < totalPages
+                a.item(href=`/search?q=${query}&page=${currentPage + 1}`) Suivant
+    else
+        .ui.divider
+        .ui.warning.message
+            h4 Aucun article ne correspond à votre recherche.

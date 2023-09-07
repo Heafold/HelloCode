@@ -1,0 +1,19 @@
+extends admin-layout
+
+block content
+    .ui.container
+        h2.ui.header Ajouter un QCM
+        if databaseError
+            .ui.negative.message= databaseError
+
+        form.ui.form(method='post' action='/admin/add-qcm')
+            .field
+                label Titre du QCM
+                input(type='text' name='title' required)
+
+            #questions
+
+            button.ui.button#add-question(type='button') Ajouter une question
+            button.ui.button(type='submit') Soumettre le QCM
+
+    script(src="/js/admin.js")

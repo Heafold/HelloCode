@@ -1,0 +1,27 @@
+extends admin-layout
+
+block content
+  .ui.container
+    h2.ui.header Modifier l'Article
+    form.ui.form(method='post' action='/admin/articles/' + article._id + '/edit')
+      .field
+        label Titre
+        input(type='text' name='title' value=article.title required)
+      .field
+        label Résumé
+        textarea(name='summary' required)= article.summary
+      .field
+        label Contenu
+        textarea(name='content' required)= article.content
+      .field
+        label Catégorie
+        select(name='category')
+          each cat in categories
+            option(value=cat._id selected=cat._id.toString() === article.category._id.toString())= cat.name
+      .field
+        label QCM associé
+        select(name='qcm')
+          option(value='') Pas de QCM
+          each q in qcms
+            option(value=q._id selected=q._id.toString() === (article.qcm && article.qcm._id ? article.qcm._id.toString() : ''))= q.title
+      button.ui.button(type='submit') Mettre à jour

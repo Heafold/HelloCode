@@ -8,3 +8,18 @@ block content
         .meta Catégorie : 
         a(href=`/category/${article.category._id}`)= article.category.name
       p #{article.content}
+      
+      if article.qcm
+        .ui.segment
+          h3.ui.header Répondre au QCM : #{article.qcm.title}
+          form.ui.form(method='post' action=`/articles/${article._id}/submit-qcm`)
+            each question, index in article.qcm.questions
+              .field
+                label= question.content
+                .grouped.fields
+                  each option, optIndex in question.options
+                    .field
+                      label
+                        input(type='radio' name=`answers[${index}]` value=optIndex required)
+                        = option
+            button.ui.button(type='submit') Soumettre la réponse
